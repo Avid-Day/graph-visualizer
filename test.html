@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HTML</title>
+    <style>
+
+            .ace_editor {
+  		border: 1px solid lightgray;
+  		margin: auto;
+  		height: 400px;
+  		width: 400px;
+  	}
+  	.scrollmargin {
+  		height: 80px;
+          text-align: center;
+  	}
+    #editor {
+      margin-right: 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="editor">
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.getSession().setMode("ace/mode/text");
+    </script>
+</body>
+</html>

@@ -22,3 +22,18 @@ text {
   font-family: sans-serif;
   font-size: 15px;
 }
+
+.ace_editor {
+  border: 1px solid lightgray;
+  margin: auto;
+  height: 400px;
+  width: 400px;
+}
+.scrollmargin {
+  height: 80px;
+  text-align: center;
+}
+#editor {
+  position: relative;
+  margin-right: 0;
+}
