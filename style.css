@@ -37,3 +37,13 @@ text {
   position: relative;
   margin-right: 0;
 }
+
+button {
+  position: relative;
+ width: 66px;
+ height: 66px;
+ cursor: pointer;
+ background: white;
+ border-radius: 20px;
+ margin: 6px;
+}

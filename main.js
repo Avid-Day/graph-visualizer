@@ -7,25 +7,39 @@ const SVG = d3.select("svg"),
 // GRAPH DATA
 const graph = {
   nodes: [
-    { name: 1 },
-    { name: 2 },
-    { name: 3 },
-    { name: 4 },
-    { name: 5 },
-    { name: 6 },
-    { name: 7 },
-    { name: 8 }
+
   ],
   links: [
-    { source: 1, target: 2 },
-    { source: 2, target: 3 },
-    { source: 3, target: 4 },
-    { source: 3, target: 5 },
-    { source: 5, target: 6 },
-    { source: 2, target: 8 }
+
   ]
 };
 
+let N = raw_data[0],
+    M = raw_data[2];
+
+let newline = 0;
+let templink = {};
+for (let i = 4; i < editor.session.getLength() * 4 - 1; i++) {
+  if (raw_data[i] === " " || raw_data[i] === "\n") continue;
+  newline++;
+  console.log(i, raw_data[i]);
+  if (newline == 1) {
+    templink.source = parseInt(raw_data[i]);
+  } else {
+    templink.target = parseInt(raw_data[i]);
+    console.log(templink);
+    graph.links.push(templink);
+    templink = {};
+    newline = 0;
+  }
+}
+
+let tempnode = {};
+
+for (let i = 1; i <= N; i++) {
+  tempnode = {name: i};
+  graph.nodes.push(tempnode);
+}
 /*
 graph.nodes.push({name: "David"})
 console.log(graph.nodes[8]);
@@ -88,6 +102,56 @@ let node = SVG
       .attr("text-anchor", "middle")
       .text(function(d) { return d.name; });
 
+function restart() {
+  graph.nodes = [];
+  graph.links = [];
+  let raw_data = editor.session.getValue();
+
+  let N = raw_data[0],
+      M = raw_data[2];
+
+  let newline = 0;
+  let templink = {};
+  for (let i = 4; i < editor.session.getLength() * 4 - 1; i++) {
+    if (raw_data[i] === " " || raw_data[i] === "\n") continue;
+    newline++;
+    console.log(i, raw_data[i]);
+    if (newline == 1) {
+      templink.source = parseInt(raw_data[i]);
+    } else {
+      templink.target = parseInt(raw_data[i]);
+      console.log(templink);
+      graph.links.push(templink);
+      templink = {};
+      newline = 0;
+    }
+  }
+
+  let tempnode = {};
+
+  for (let i = 1; i <= N; i++) {
+    tempnode = {name: i};
+    graph.nodes.push(tempnode);
+  }
+  // Apply the general update pattern to the nodes.
+  node = node.data(graph.nodes);
+  node.exit().remove();
+  node = node.enter().append("circle").attr("fill", function(d) { return color(d.id); }).attr("r", 8).merge(node);
+
+  // Apply the general update pattern to the links.
+  link = link.data(graph.links);
+  link.exit().remove();
+  link = link.enter().append("line").merge(link);
+
+  // Update and restart the simulation.
+  simulation.nodes(graph.nodes);
+  simulation.force("link").links(graph.links);
+  simulation.alpha(1).restart();
+}
+
+document.getElementById("button").addEventListener("click", function() {
+  restart();
+});
 
 function ticked() {
   link
