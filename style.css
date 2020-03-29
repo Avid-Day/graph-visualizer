@@ -5,6 +5,8 @@ body {
 svg {
   position: fixed;
   background-color: white;
+  width: 50%;
+  height: 90%;
 }
 
 .links line {
@@ -23,19 +25,18 @@ text {
   font-size: 15px;
 }
 
-.ace_editor {
-  border: 1px solid lightgray;
-  margin: auto;
-  height: 400px;
-  width: 400px;
-}
 .scrollmargin {
   height: 80px;
   text-align: center;
 }
+
 #editor {
   position: relative;
+  border: 1px solid lightgray;
+  margin: auto;
   margin-right: 0;
+  height: 650px;
+  width: 40%;
 }
 
 button {
