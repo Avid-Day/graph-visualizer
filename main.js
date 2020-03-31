@@ -2,7 +2,7 @@
 const SVG = d3.select("svg"),
     WIDTH = SVG.attr("width"),
     HEIGHT = SVG.attr("height");
-    RADIUS = 20;
+    RADIUS = 15;
 
 // GRAPH DATA
 const graph = {

@@ -1,12 +1,55 @@
 body {
-  background-color: black;
+  background-color: white;
 }
 
-svg {
+.navbar {
   position: fixed;
+  align-items: center;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  margin-bottom: 2em;
+  height: 48px;
+  background: rgba(248, 249, 250, 0.8);
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.nav-link:hover {
+  border-bottom: 3px solid red;
+}
+
+.child-1-1 {
+  flex: 1 0 auto; /* makes the logo take all available space */
+  margin-left: 20px;
+  min-width: 150px;
+  /* will need to write a media query to stop links falling up the logo on wrap */
+}
+
+.child-nav {
+  margin-right: 30px;
+}
+
+.child-nav:last-child {
+  margin-right: 50px;
+}
+
+
+svg {
+  margin-top: 4%;
+  position: fixed;
+  float: left;
+  min-width: 500px;
   background-color: white;
-  width: 50%;
-  height: 90%;
+  display: inline;
+  border: 1px solid lightgray;
+
 }
 
 .links line {
@@ -31,20 +74,21 @@ text {
 }
 
 #editor {
+  margin-top: 4%;
   position: relative;
+  display: inline;
   border: 1px solid lightgray;
-  margin: auto;
-  margin-right: 0;
+  float: left;
   height: 650px;
-  width: 40%;
+  width: 25%;
 }
 
 button {
   position: relative;
- width: 66px;
- height: 66px;
- cursor: pointer;
- background: white;
- border-radius: 20px;
- margin: 6px;
+  width: 66px;
+  height: 66px;
+  cursor: pointer;
+  background: white;
+  border-radius: 20px;
+  margin: 6px;
 }
