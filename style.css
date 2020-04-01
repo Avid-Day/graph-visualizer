@@ -75,7 +75,7 @@ text {
   text-align: center;
 }
 
-#editor {
+.editor-container {
   margin-top: 4%;
   position: relative;
   display: inline;
@@ -83,6 +83,41 @@ text {
   float: left;
   height: 650px;
   width: 25%;
+}
+
+.editor-tabs {
+  padding: 0px;
+  margin: 0;
+	display: flex;
+  background: rgba(248, 249, 250, 0.8);
+  color: black;
+	width: 100%;
+  height: 30px;
+  align-items: center;
+  z-index: 1;
+}
+
+.tab {
+  list-style: none;
+  background: transparent;
+  padding: 0px;
+  margin: 0px;
+  font: inherit;
+  border-radius: 0;
+  cursor: pointer;
+  outline: none;
+  flex-grow: 1;
+  text-align: center;
+  z-index: 1;
+}
+
+.active {
+  background-color: #f5ff3d;
+}
+
+#editor {
+  height: 620px;
+  width: 100%;
 }
 
 button {

@@ -11,25 +11,31 @@
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="child-1-1">Graph Editor</div>
-      <div class="child-nav"><a id="button" class="nav-link">START</a></div>
+      <div class="child-nav"><a id="button" class="nav-link">UPDATE_GRAPH</a></div>
       <div class="child-nav"><a class="nav-link">RUN_CODE</a></div>
       <div class="child-nav"><a class="nav-link">GRAVITY_OFF</a></div>
       <div class="child-nav"><a class="nav-link">HELP</a></div>
     </nav>
-
-    <div id="editor">8 6
+    <div class="editor-container">
+      <ul class="editor-tabs">
+        <li class="tab active" id="graph-input">Graph Input</li>
+        <li class="tab" id="graph-code">Source Code</li>
+      </ul>
+      <div id="editor">8 6
 1 2
 2 3
 3 4
 3 5
 5 6
-2 8</div>
+2 8  </div>
+    </div>
     <svg width="1000" height="650"></svg>
 
     <!--<button type="button" id="button">Start</button>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="ace_editor.js"></script>
+    <script src="tab_behaviour.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
