@@ -127,11 +127,17 @@ function dragended(d) {
 
 function ticked() {
     node
-        .attr("transform", function(d) {
-          return "translate(" + Math.max(RADIUS, Math.min(WIDTH - RADIUS - 10, d.x)) + "," + Math.max(RADIUS, Math.min(HEIGHT - RADIUS - 10, d.y)) + ")";
-        })
-        link.attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
+        .attr("transform", function (d) {
+            // commented out code for some reason lets edges break off the nodes at the ends.
+            // why is this? I'm not sure.
+            //return "translate("+Math.max(RADIUS, Math.min(WIDTH - RADIUS, d.x))+","+Math.max(RADIUS, Math.min(HEIGHT - RADIUS, d.y))+")";
+            d.x = Math.max(RADIUS, Math.min(WIDTH - RADIUS, d.x));
+            d.y = Math.max(RADIUS, Math.min(HEIGHT - RADIUS, d.y));
+            return "translate("+d.x+","+d.y+")";
+        });
+
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
 }
