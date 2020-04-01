@@ -56,7 +56,7 @@ function create_graph() {
         .distance(150)
         .links(graph.links)
     )
-    .force("charge", d3.forceManyBody().strength(-250))
+    .force("charge", d3.forceManyBody().strength(-150))
     .force("center", d3.forceCenter(WIDTH / 2, HEIGHT / 2))
     .on("tick", ticked);
 
@@ -69,7 +69,7 @@ function create_graph() {
     .enter()
     .append("line")
     .attr("stroke-WIDTH", function(d) {
-      return 3;
+      return 1;
     });
 
   node = SVG
@@ -107,25 +107,6 @@ document.getElementById("button").addEventListener("click", function() {
   create_graph();
 });
 
-function ticked() {
-  link
-    .attr("x1", function(d) {
-      return d.source.x;
-    })
-    .attr("y1", function(d) {
-      return d.source.y;
-    })
-    .attr("x2", function(d) {
-      return d.target.x;
-    })
-    .attr("y2", function(d) {
-      return d.target.y;
-    });
-    node
-        .attr("transform", function(d) {
-          return "translate(" + Math.max(RADIUS, Math.min(WIDTH - RADIUS, d.x)) + "," + Math.max(RADIUS, Math.min(HEIGHT - RADIUS, d.y)) + ")";
-        })
-}
 
 function dragstarted(d) {
   if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -142,4 +123,15 @@ function dragended(d) {
   if (!d3.event.active) simulation.alphaTarget(0);
   d.fx = null;
   d.fy = null;
+}
+
+function ticked() {
+    node
+        .attr("transform", function(d) {
+          return "translate(" + Math.max(RADIUS, Math.min(WIDTH - RADIUS - 10, d.x)) + "," + Math.max(RADIUS, Math.min(HEIGHT - RADIUS - 10, d.y)) + ")";
+        })
+        link.attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 }
