@@ -56,7 +56,7 @@ function create_graph() {
         .distance(150)
         .links(graph.links)
     )
-    .force("charge", d3.forceManyBody().strength(-150))
+    .force("charge", d3.forceManyBody().strength(-200))
     .force("center", d3.forceCenter(WIDTH / 2, HEIGHT / 2))
     .on("tick", ticked);
 
