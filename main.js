@@ -89,6 +89,9 @@ function create_graph() {
     // Attach circle to group
     node.append("circle")
     .attr("r", RADIUS)
+    .attr("id", function(d) {
+      return "NODE-" + d.name;
+    })
     .attr("fill", function(d) {
       return "white";
     });
@@ -100,13 +103,6 @@ function create_graph() {
         .attr("text-anchor", "middle")
         .text(function(d) { return d.name; });
 }
-
-create_graph();
-
-document.getElementById("button").addEventListener("click", function() {
-  create_graph();
-});
-
 
 function dragstarted(d) {
   if (!d3.event.active) simulation.alphaTarget(0.3).restart();
@@ -141,12 +137,32 @@ function ticked() {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 }
-/*
-IMPLEMENT BFS
+
+create_graph();
+
+document.getElementById("button").addEventListener("click", function() {
+  create_graph();
+});
+
+let visited = [];
+for (let i = 0; i <= graph.nodes.length; i++) {
+  visited.push(0);
+}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// async function test() {
+//   d3.select('#NODE-2').style('fill','red');
+//   await sleep(2000);
+//   d3.select('#NODE-1').style('fill','red');
+// }
+// test();
+
+
 // we give you edges = [{source: 1, target: 2}]
 // N = num nodes;
-let CURR_NODE = -1;
-function solve(edges, N) {
+async function solve(edges, N) {
     let vis = [], queue = [1], adj = [];
 
     for (let i = 0; i <= N; i++) {
@@ -162,13 +178,11 @@ function solve(edges, N) {
     while (queue.length) {
         let curr = queue[0];
         queue.shift();
-        CURR_NODE = curr;
-        console.log(CURR_NODE);
-        console.log("TO:");
+        d3.select("#NODE-"+curr.toString()).style('fill','red');
+        await sleep(2000);
         for (let i = 0; i < adj[curr].length; i++) {
             let nxt = adj[curr][i];
             if (vis[nxt]) continue;
-            console.log(nxt);
             vis[nxt] = 1;
             queue.push(nxt);
         }
@@ -176,4 +190,3 @@ function solve(edges, N) {
 }
 
 solve(graph.links, graph.nodes.length);
-*/
