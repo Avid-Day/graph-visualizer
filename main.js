@@ -140,53 +140,21 @@ function ticked() {
 
 create_graph();
 
-document.getElementById("button").addEventListener("click", function() {
-  create_graph();
-});
+let node_order = main(graph.links, graph.nodes.length);
 
-let visited = [];
-for (let i = 0; i <= graph.nodes.length; i++) {
-  visited.push(0);
-}
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// async function test() {
-//   d3.select('#NODE-2').style('fill','red');
-//   await sleep(2000);
-//   d3.select('#NODE-1').style('fill','red');
-// }
-// test();
-
-
-// we give you edges = [{source: 1, target: 2}]
-// N = num nodes;
-async function solve(edges, N) {
-    let vis = [], queue = [1], adj = [];
-
-    for (let i = 0; i <= N; i++) {
-        vis.push(0);
-        adj.push([]);
-    }
-    for (let i = 0; i < edges.length; i++) {
-        adj[edges[i].source.name].push(edges[i].target.name);
-    }
-
-    vis[1] = 1;
-
-    while (queue.length) {
-        let curr = queue[0];
-        queue.shift();
-        d3.select("#NODE-"+curr.toString()).style('fill','red');
-        await sleep(2000);
-        for (let i = 0; i < adj[curr].length; i++) {
-            let nxt = adj[curr][i];
-            if (vis[nxt]) continue;
-            vis[nxt] = 1;
-            queue.push(nxt);
-        }
-    }
+async function run_user_code() {
+  for (let i = 0; i < node_order.length; i++) {
+    d3.select("#NODE-" + node_order[i].toString()).style("fill", "red");
+    await sleep(2000);
+  }
 }
 
-solve(graph.links, graph.nodes.length);
+run_user_code();
+
+document.getElementById("button").addEventListener("click", function() {
+  create_graph();
+});
