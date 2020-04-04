@@ -1,10 +1,9 @@
 
-
 // we give you edges = [{source: 1, target: 2}]
 // N = num nodes;
 function main(edges, N) {
     let vis = [], queue = [1], adj = [], order = [];
-    
+
     for (let i = 0; i <= N; i++) {
         vis.push(0);
         adj.push([]);

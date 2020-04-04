@@ -17,7 +17,13 @@ const graph = {
 let simulation, link, node;
 
 function get_data() {
-  new_data = parseRaw(editor.session.getValue());
+  let data = "";
+  if (curr_tab) {
+    data = editor.session.getValue();
+  } else {
+    data = input_data;
+  }
+  new_data = parseRaw(data);
   let N = parseInt(new_data[0]),
       M = parseInt(new_data[1]);
   let curr_ind = 2;
@@ -138,23 +144,33 @@ function ticked() {
         .attr("y2", function(d) { return d.target.y; });
 }
 
-create_graph();
-
-let node_order = main(graph.links, graph.nodes.length);
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function run_user_code() {
+let running_code = false;
+
+async function run_user_code(node_order) {
   for (let i = 0; i < node_order.length; i++) {
     d3.select("#NODE-" + node_order[i].toString()).style("fill", "red");
     await sleep(2000);
   }
+  running_code = false;
 }
 
-run_user_code();
+document.getElementById("draw_graph").addEventListener("click", function() {
+  console.log(running_code);
+  if (!running_code) create_graph();
+});
 
-document.getElementById("button").addEventListener("click", function() {
-  create_graph();
+document.getElementById("run_code").addEventListener("click", function() {
+  running_code = true;
+  console.log(running_code + "11");
+  if (!clicked) {
+    eval(code_data);
+  } else {
+    eval(editor.session.getValue());
+  }
+  let node_order = main(graph.links, graph.nodes.length);
+  run_user_code(node_order);
 });
