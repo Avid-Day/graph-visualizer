@@ -159,13 +159,11 @@ async function run_user_code(node_order) {
 }
 
 document.getElementById("draw_graph").addEventListener("click", function() {
-  console.log(running_code);
   if (!running_code) create_graph();
 });
 
 document.getElementById("run_code").addEventListener("click", function() {
   running_code = true;
-  console.log(running_code + "11");
   if (!clicked) {
     eval(code_data);
   } else {
