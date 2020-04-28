@@ -11,7 +11,7 @@ body {
   z-index: 1;
   width: 100%;
   display: flex;
-  margin-bottom: 2em;
+  margin-bottom: 1px;
   height: 48px;
   background: rgba(248, 249, 250, 0.8);
 }
@@ -44,7 +44,7 @@ body {
 
 
 svg {
-  margin-top: 4%;
+  margin-top: 3em;
   position: fixed;
   float: left;
   min-width: 500px;
@@ -76,7 +76,7 @@ text {
 }
 
 .editor-container {
-  margin-top: 4%;
+  margin-top: 3em;
   position: relative;
   display: inline;
   border: 1px solid lightgray;
