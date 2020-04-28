@@ -1,9 +1,9 @@
 // CONSTANTS
 const SVG = d3.select("svg"),
-    WIDTH = SVG.attr("width"),
-    HEIGHT = SVG.attr("height");
+    WIDTH = SVG.style("width").replace("px", ""),
+    HEIGHT = SVG.style("height").replace("px", "");
     RADIUS = 20;
-
+console.log(WIDTH, HEIGHT);
 // GRAPH DATA
 const graph = {
   nodes: [

@@ -1,7 +1,9 @@
 body {
   background-color: white;
   font-family: "Martel", sans-serif;
-
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
 }
 
 .navbar {
@@ -51,7 +53,8 @@ svg {
   background-color: white;
   display: inline;
   border: 1px solid lightgray;
-
+  height: 650px;
+  width: 1000px;
 }
 
 .links line {
