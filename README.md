@@ -1,3 +1,3 @@
 # graph-visualizer
 visually see your graph algorithms run!
-https://avid-day.github.io/graph-visualizer/
+https://ULTYMAN.github.io/graph-visualizer/
